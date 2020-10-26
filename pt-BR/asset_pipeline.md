@@ -158,36 +158,37 @@ Mais leitura:
 * [Acelerando nome dos arquivos: não use *Query String*(string de consulta)](http://www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/)
 
 
-How to Use the Asset Pipeline
+Como Usar o *Asset Pipeline*
 -----------------------------
 
-In previous versions of Rails, all assets were located in subdirectories of
-`public` such as `images`, `javascripts` and `stylesheets`. With the asset
-pipeline, the preferred location for these assets is now the `app/assets`
-directory. Files in this directory are served by the Sprockets middleware.
+Nas versões anteriores do Rails, todos os *assets* são localizados em subdiretórios da
+`public` assim como `images`, `javascripts` e `stylesheets`. Com o *asset pipeline*,
+a localização preferida para esses *assets* é agora o diretório `app/assets`.
+Arquivos nesses diretórios são servidos pelo *middleware Sprockets*.
 
-Assets can still be placed in the `public` hierarchy. Any assets under `public`
-will be served as static files by the application or web server when
-`config.public_file_server.enabled` is set to true. You should use `app/assets` for
-files that must undergo some pre-processing before they are served.
+Os *assets* podem continuar sendo colocados na hierarquia `public`. Qualquer *assets*
+na `public` será servido como arquivo estático pelo aplicação ou servidor *web* quando o
+`config.public_file_server.enabled` está definido como *true*. Você deve usar o `app/assets` para
+arquivos que devem passar por algum pré-processamento antes de serem servidos.
 
-In production, Rails precompiles these files to `public/assets` by default. The
-precompiled copies are then served as static assets by the web server. The files
-in `app/assets` are never served directly in production.
+Em produção, o Rails pré-compila esses arquivos para a `public/assets` por padrão. As
+cópias pŕe-compiladas são então servidas como *assets* estáticos pelo servidor web.
+Os arquivos na `app/assets` nunca serão servidas diretamente em produção.
 
-### Controller Specific Assets
+### Assets Específicos do *Controller*
 
-When you generate a scaffold or a controller, Rails also generates a
-Cascading Style Sheet file (or SCSS file if `sass-rails` is in the `Gemfile`)
-for that controller. Additionally, when generating a scaffold, Rails generates
-the file `scaffolds.css` (or `scaffolds.scss` if `sass-rails` is in the
-`Gemfile`.)
+Quando você gera um *scaffold* ou um *controller*, o Rails também gera um arquivo
+*Cascading Style Sheet* (ou arquivo SCSS se o `sass-rails` estiver no `Gemfile`)
+para aquele *controller*. Além disso, ao gerar o *scaffold*, o Rails gera o arquivo
+`scaffolds.css` (ou `scaffolds.scss` see o `sass-rails` estivere no `Gemfile`.)
 
-For example, if you generate a `ProjectsController`, Rails will also add a new
-file at `app/assets/stylesheets/projects.scss`. By default these files will be
-ready to use by your application immediately using the `require_tree` directive. See
-[Manifest Files and Directives](#manifest-files-and-directives) for more details
-on require_tree.
+Por exemplo, se você gerar um `ProjectsController`, o Rails também adicionará
+um novo arquivo no `app/assets/stylesheets/projects.scss`. Por padrão esses arquivos
+estarão prontos para ser usado imediatamente pela sua aplicação usando a diretriz
+`require_tree`. Veja o [Manifest de Arquivos and Diretrizes](#manifest-files-and-directives)
+para mais detalhes.
+
+Você pode também optar por incluir arquivos especificos *stylesheets* e *JavasSript*
 
 You can also opt to include controller specific stylesheets and JavaScript files
 only in their respective controllers using the following:
