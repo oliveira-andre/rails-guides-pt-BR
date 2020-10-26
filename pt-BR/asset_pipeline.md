@@ -175,7 +175,7 @@ Em produção, o Rails pré-compila esses arquivos para a `public/assets` por pa
 cópias pŕe-compiladas são então servidas como *assets* estáticos pelo servidor web.
 Os arquivos na `app/assets` nunca serão servidas diretamente em produção.
 
-### Assets Específicos do *Controller*
+### *Assets* Específicos do *Controller*
 
 Quando você gera um *scaffold* ou um *controller*, o Rails também gera um arquivo
 *Cascading Style Sheet* (ou arquivo SCSS se o `sass-rails` estiver no `Gemfile`)
@@ -188,29 +188,28 @@ estarão prontos para ser usado imediatamente pela sua aplicação usando a dire
 `require_tree`. Veja o [Manifest de Arquivos and Diretrizes](#manifest-files-and-directives)
 para mais detalhes.
 
-Você pode também optar por incluir arquivos especificos *stylesheets* e *JavasSript*
+Você pode também optar por incluir arquivos *stylesheets* e *JavasSript* específicos
+do *controller* apenas nos seus respectivos *controllers* usando o seguinte:
 
-You can also opt to include controller specific stylesheets and JavaScript files
-only in their respective controllers using the following:
-
-`<%= javascript_include_tag params[:controller] %>` or `<%= stylesheet_link_tag
+`<%= javascript_include_tag params[:controller] %>` ou `<%= stylesheet_link_tag
 params[:controller] %>`
 
-When doing this, ensure you are not using the `require_tree` directive, as that
-will result in your assets being included more than once.
+Quando fazemos isso, certifique-se de não estar usando a diretiva `require_tree`,
+pois isso resultará nos seus *assets* sendo incluídos mais de uma vez.
 
-WARNING: When using asset precompilation, you will need to ensure that your
-controller assets will be precompiled when loading them on a per page basis. By
-default `.coffee` and `.scss` files will not be precompiled on their own. See
-[Precompiling Assets](#precompiling-assets) for more information on how
-precompiling works.
+WARNING: Quando estiver usando a pré-compilação do *asset*, você precisará ter certeza
+que seus *assets* do *controller* serão pré-compilados ao carregá-los por página. Por padrão
+arquivos `.coffee` e `.scss` não serão pré-compilados por conta própria. Veja o
+[Pré-compilando *Assets*](#precompiling-assets) para mais informação sobre como
+a pré-compilação funciona.
 
-NOTE: You must have an ExecJS supported runtime in order to use CoffeeScript.
-If you are using macOS or Windows, you have a JavaScript runtime installed in
-your operating system. Check [ExecJS](https://github.com/rails/execjs#readme) documentation to know all supported JavaScript runtimes.
+NOTE: Você deve um tempo de execução ExecJS compatível para usar o CoffeeScript.
+Se você estiver usando macOS ou Windows, você tem um tempo de execução JavaScript
+intalado no seu sistema operacional. Veja a documentação [ExecJS](https://github.com/rails/execjs#readme)
+para saber todos os tempos de execução JavaScript compatíveis.
 
-You can also disable generation of controller specific asset files by adding the
-following to your `config/application.rb` configuration:
+Você pode também desabilitar a geração de arquivos *asset* específico do controller
+adicionando o seguinte a sua configuração no `config/application.rb`:
 
 ```ruby
   config.generators do |g|
@@ -218,21 +217,22 @@ following to your `config/application.rb` configuration:
   end
 ```
 
-### Asset Organization
+### Organização dos *Assets*
 
-Pipeline assets can be placed inside an application in one of three locations:
-`app/assets`, `lib/assets` or `vendor/assets`.
+Os *pipeline assets* podem ser colocados dentro de uma aplicação em uma dessas
+três localicações: `app/assets`, `lib/assets` ou `vendor/assets`.
 
-* `app/assets` is for assets that are owned by the application, such as custom
-images, JavaScript files, or stylesheets.
+* A `app/assets` é para os *assets* que são da própria aplicação, assim como
+imagens customizadas, arquivos JavaScript, ou *stylesheets*.
 
-* `lib/assets` is for your own libraries' code that doesn't really fit into the
-scope of the application or those libraries which are shared across applications.
+* A `lib/assets` é para o código de suas próprias bibliotecas que realmente não
+se encaixam dentro do escopo da aplicação ou aquelas bibliotecas que são compartilhadas
+entre aplicações.
 
-* `vendor/assets` is for assets that are owned by outside entities, such as
-code for JavaScript plugins and CSS frameworks. Keep in mind that third party
-code with references to other files also processed by the asset Pipeline (images,
-stylesheets, etc.), will need to be rewritten to use helpers like `asset_path`.
+* A `vendor/assets` é para os *assets* que pertencem a entidades externas, assim como
+código para plugins JavaScript e *frameworks* CSS. Mantenha em mente que um código
+tercerizado com referencias para outros arquivos que também são processados pelo *asset Pipeline*
+(imagens, *stylesheets*, etc.), precisarão ser reescritos para usar *helpers* como `asset_path`.
 
 #### Search Paths
 
